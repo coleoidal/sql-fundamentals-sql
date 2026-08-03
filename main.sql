@@ -1,16 +1,7 @@
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
-  email TEXT NOT NULL UNIQUE,
-  age INTEGER CHECK (age >= 0 and age < 150),
-  role TEXT NOT NULL DEFAULT 'member'
-);
-
+CREATE TABLE users (id INTEGER, name TEXT, nickname TEXT);
 INSERT INTO users VALUES
-  (1, 'ada@x.io', 36, 'member'),
-  (2, 'bob@x.io', 50, 'admin')
-;
+    (1, 'Ada Lovelace', 'Ada'),
+    (2, 'Bob', NULL),
+    (3, 'Carol', 'Cee');
 
-SELECT id || '|' || email || '|' || age || '|' || role
-FROM users
-ORDER BY id;
-
+SELECT COALESCE(nickname, name) FROM users ORDER BY id;
