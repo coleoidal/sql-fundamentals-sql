@@ -1,17 +1,16 @@
-CREATE TABLE employees (name TEXT, salary INTEGER);
-INSERT INTO employees VALUES
-    ('Ada', 95000),
-    ('Bob', 50000),
-    ('Carol', 80000),
-    ('Dan', 55000);
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE,
+  age INTEGER CHECK (age >= 0 and age < 150),
+  role TEXT NOT NULL DEFAULT 'member'
+);
 
-UPDATE employees
-  SET salary = 90000
-  WHERE name = 'Bob';
+INSERT INTO users VALUES(
+  (1, 'ada@x.io', 36, 'member'),
+  (2, 'bob@x.io', 50, 'admin')
+);
 
-DELETE FROM employees
-WHERE name = 'Carol';
+SELECT id || '|' || email || '|' || age || '|' || role
+FROM users
+ORDER BY id;
 
-SELECT name, salary
-FROM employees
-ORDER By name;
